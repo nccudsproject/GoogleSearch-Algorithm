@@ -27,7 +27,7 @@ public class Main {
 			Elements lis = doc.select("div");
 			lis = lis.select(".kCrYT");
 //			System.out.println(lis);
-			//------------------new--------------
+			//------------------new--------------要用arraylist 排序，不能用hashmap
 			ArrayList<webNode> weblist = new ArrayList<webNode>();
 			//-----------------------------------
 			int count=0;
