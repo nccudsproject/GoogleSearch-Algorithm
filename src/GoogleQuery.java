@@ -22,7 +22,12 @@ public class GoogleQuery
 	public GoogleQuery(String searchKeyword)
 	{
 		this.searchKeyword = searchKeyword;
-		this.url = "http://www.google.com/search?q="+searchKeyword+"&oe=utf8&num=30"; //模仿輸入的搜尋結果，num=要的結果數量
+		//.tw可以指定搜尋台灣的網頁
+		
+		this.url ="https://www.google.com.tw/search?sxsrf=ALeKk00RuwmrezLvpG4Yb2VrWYKNjhEVzw%3A1609342671041&source=hp&ei=zp7sX4P5POmFr7wPytm74A0&q="+searchKeyword+"&num=100&gs_lcp=CgZwc3ktYWIQDDIECAAQHlD7BVj7BWC7DGgAcAB4AIABWogBWpIBATGYAQCgAQKgAQGqAQdnd3Mtd2l6&sclient=psy-ab&ved=0ahUKEwiDmOjRhPbtAhXpwosBHcrsDtwQ4dUDCAK"; 
+//				"http://www.google.com.tw/search?q="+searchKeyword+"&ie=UTF-8&oe=UTF-8&num=100"; //模仿輸入的搜尋結果，num=要的結果數量  //&oe=utf8&num=30
+//		this.url = "https://www.youtube.com/results?search_query="+searchKeyword; //模仿youtube， 待測試
+		System.out.println(url);
 	}
 	
 	public String fetchContent() throws IOException
@@ -30,10 +35,10 @@ public class GoogleQuery
 		String retVal = "";
 		URL u = new URL(url);
 		URLConnection conn = u.openConnection();
-		conn.setRequestProperty("User-agent", "Chrome/7.0.517.44");
+		conn.setRequestProperty("User-agent", "Mozilla/5.0");
+		conn.setRequestProperty("Accept-Charset", "UTF-8");
 		InputStream in = conn.getInputStream();
-		InputStreamReader inReader = new InputStreamReader(in,"utf-8");
-		BufferedReader bufReader = new BufferedReader(inReader);
+		BufferedReader bufReader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
 		String line = null;
 		
 		while((line=bufReader.readLine())!=null)
